@@ -3,3 +3,4 @@
 3, Achham furniture, Sleeper Sofa, 50, $200
 4, Kimball International Inc., Corner sofa, 75, $350
 5, Kohler Co., Armchair, 30, $150
+6, Oak and Furnishings, Luxury Recliner, 200, $200
