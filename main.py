@@ -9,8 +9,7 @@ while status == True:
     if question == '1':
         read.readInventory()
     elif question == '2':
-        write.addFurniture()
-        operations.calculatePurchase()
+        operations.addFurniture()
     elif question == '3':
         write.sellFurniture()
     elif question == '4':       
