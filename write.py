@@ -1,6 +1,7 @@
 import read
 import operations
-
+id = operations.newCheckId
+newValue = operations.newQuantity
 
 def writeReceipt():
-    inventoryTemp = read.inventory
+    pass
