@@ -30,6 +30,6 @@ def addFurniture():
             )
         else:
             print("Error try again")
-    statusCheck = input("Do you want to add more items \n")
+    statusCheck = input("Do you want to add more items? \n")
     if statusCheck.lower() == "no":
         status == False

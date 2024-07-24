@@ -1,4 +1,6 @@
+import read
 import operations
 
-def writeInventory():
-    
+
+def writeReceipt():
+    inventoryTemp = read.inventory
