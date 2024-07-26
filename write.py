@@ -4,4 +4,6 @@ id = operations.newCheckId
 newValue = operations.newQuantity
 
 def writeReceipt():
-    pass
+    print("="*17)
+    
+    print("="*17)
