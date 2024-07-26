@@ -1,9 +1,8 @@
 import read
-import operations
-id = operations.newCheckId
-newValue = operations.newQuantity
 
 def writeReceipt():
-    print("="*17)
-    
-    print("="*17)
+    receipt = [
+        print("="*50,"\nReceipt\n","="*50),
+        print(),
+        print("="*50)
+        ]

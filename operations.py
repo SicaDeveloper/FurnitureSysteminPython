@@ -1,9 +1,10 @@
 import read
+statusCheck = True
 
 status = True
 def addFurniture():
-    while statusCheck == True:
         while status == True:
+            
             furnitureValue = input("Is this piece of furniture already in the inventory? (yes/no) \n")
             
             if furnitureValue.lower() == "yes":
@@ -14,8 +15,8 @@ def addFurniture():
                         newCheckId = int(checkId) - 1
                         newQuantity = int(input("Enter the amount of new inventory \n"))
                         addedValue = int(read.inventory[newCheckId][checkId][2]) + newQuantity
-                        read.inventory[newCheckId][checkId][2] = addedValue
-                        
+                        read.inventory[newCheckId][checkId][2] = addedValue    
+                          
             elif furnitureValue.lower() == "no":
                 furnitureManufacturer = input("Enter Manufacturer Name: ")
                 furnitureType = input("Enter Furniture Type: ")
@@ -31,6 +32,7 @@ def addFurniture():
                 )
             else:
                 print("Error try again")
-        statusCheck = input("Do you want to add more items? \n")
-    if statusCheck.lower() == "no":
-        status == False
+            
+            checkStatus = input("Do you want to continue? (yes/no) \n")
+            if checkStatus == "no":
+                status = False
