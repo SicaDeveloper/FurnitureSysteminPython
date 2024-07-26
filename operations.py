@@ -1,4 +1,5 @@
 import read
+import write
 def addFurniture():
     status = True
     while status == True:
@@ -13,7 +14,13 @@ def addFurniture():
                     newCheckId = int(checkId) - 1
                     newQuantity = int(input("Enter the amount of new inventory \n"))
                     addedValue = int(read.inventory[newCheckId][checkId][2]) + newQuantity
-                    read.inventory[newCheckId][checkId][2] = addedValue    
+                    read.inventory[newCheckId][checkId][2] = addedValue  
+                    
+                    write.newCheckId = newCheckId
+                    write.newQuantity = newQuantity
+                    
+                    write.idAndQuantity.append([checkId,newQuantity])
+                    
                         
         elif furnitureValue.lower() == "no":
             furnitureManufacturer = input("Enter Manufacturer Name: ")

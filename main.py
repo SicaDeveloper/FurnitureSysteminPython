@@ -10,6 +10,7 @@ while status == True:
         read.readInventory()
     elif question == '2':
         operations.addFurniture()
+        write.writeReceipt()
     elif question == '3':
         write.sellFurniture()
     elif question == '4':       
