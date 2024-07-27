@@ -1,5 +1,6 @@
 import read
 import write
+
 def addFurniture():
     status = True
     while status == True:
