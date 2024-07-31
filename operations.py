@@ -1,27 +1,27 @@
+import datetime
 import read
 import write
 
+vat = 0.13  
+time = datetime.datetime.now()
+
 def addFurniture():
     status = True
+    employeeName = input("Enter your name (Employee Name)")
     while status == True:
-        employeeName = input("Enter your name (Employee Name)")
         furnitureValue = input("Is this piece of furniture already in the inventory? (yes/no) \n")
         if furnitureValue.lower() == "yes":
             checkId = input("Input the ID of the furniture \n")
-            for line in range(len(read.inventory)):
-                item = read.inventory[line]
-                if checkId in item:
+            for key in read.inventory:
+                if checkId in key:
                     newCheckId = int(checkId) - 1
                     newQuantity = int(input("Enter the amount of new inventory \n"))
-                    addedValue = int(read.inventory[newCheckId][checkId][2]) + newQuantity
-                    read.inventory[newCheckId][checkId][2] = addedValue  
+                    addedValue = int(read.inventory[checkId][2]) + newQuantity
+                    read.inventory[checkId][2] = addedValue  
                     
                     write.newCheckId = newCheckId
                     write.newQuantity = newQuantity
-                    
-                    write.idAndQuantity.append([checkId,newQuantity])
-                    
-                        
+                       
         elif furnitureValue.lower() == "no":
             furnitureManufacturer = input("Enter Manufacturer Name: ")
             furnitureType = input("Enter Furniture Type: ")
@@ -29,15 +29,17 @@ def addFurniture():
             furniturePrice = input("Enter Price per Unit: ")
             
             lastId = int(read.recentId) + 1
-            
-            read.inventory.append(
-                {
-                    str(lastId): [furnitureManufacturer, furnitureType, furnitureQuantity, furniturePrice]
-                }
-            )
+            read.inventory.update({str(lastId): [furnitureManufacturer, furnitureType, furnitureQuantity, furniturePrice]})
         else:
             print("Error try again")
-        
         checkStatus = input("Do you want to continue? (yes/no) \n")
         if checkStatus == "no":
             status = False
+    
+    receipt = [
+        "="*50, "\nReceipt\n",
+            time,"\n",
+            "\n",
+            "="*50
+        
+    ]
