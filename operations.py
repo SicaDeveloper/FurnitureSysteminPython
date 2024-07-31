@@ -4,9 +4,8 @@ import write
 def addFurniture():
     status = True
     while status == True:
-        
+        employeeName = input("Enter your name (Employee Name)")
         furnitureValue = input("Is this piece of furniture already in the inventory? (yes/no) \n")
-        
         if furnitureValue.lower() == "yes":
             checkId = input("Input the ID of the furniture \n")
             for line in range(len(read.inventory)):
