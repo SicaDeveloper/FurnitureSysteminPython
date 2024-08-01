@@ -2,8 +2,8 @@ import datetime
 
 time = datetime.datetime.now()
 receipt = None
-
+timeString = str(time)
 def writeReceipt():
-    fileName = str(time)
+    fileName = timeString + ".txt"
     with open(fileName,"w") as receiptFile:
         receiptFile.write(receipt)
