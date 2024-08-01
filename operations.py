@@ -16,6 +16,7 @@ def addFurniture():
         if furnitureValue.lower() == "yes":
             checkId = input("Input the ID of the furniture \n")
             for key in read.inventory:
+                checkIdValue = False
                 if checkId in key:
                     newQuantity = int(input("Enter the amount of new inventory \n"))
                     addedValue = int(read.inventory[checkId][2]) + newQuantity
@@ -26,10 +27,13 @@ def addFurniture():
                     
                     furnitureList.append([productName,space * "",newQuantity,"\n"])
                     Total += newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$",""))
+                    checkIdValue = True
                     
+            if checkIdValue == False:
+                print("Item not found / doesn't Exist")
             write.receipt = [
                 "="*50, "\nReceipt\n",
-                    time.year,time.month,time.day,"\n",
+                    str(time.year) + str(time.month) + str(time.day),"\n",
                     employeeName,"\n",
                     furnitureList,"\n",
                     Total,"\n",
@@ -50,7 +54,8 @@ def addFurniture():
         checkStatus = input("Do you want to continue? (yes/no) \n")
         if checkStatus == "no":
             status = False
-        
+    for item in write.receipt:
+                print(item)    
 
 def sellFurniture():
     status = True
@@ -73,7 +78,7 @@ def sellFurniture():
                     write.receipt = [
                         "="*50, "\nReceipt\n",
                             time.year,time.month,time.day,"\n",
-                            employeeName,"\n",
+                            customerName,"\n",
                             furnitureList,"\n",
                             "\n",
                             "\n",
