@@ -7,6 +7,7 @@ time = datetime.datetime.now()
 
 furnitureList = []
 
+
 def addFurniture():
     Total = 0
     status = True
@@ -15,8 +16,8 @@ def addFurniture():
         furnitureValue = input("Is this piece of furniture already in the inventory? (yes/no) \n")
         if furnitureValue.lower() == "yes":
             checkId = input("Input the ID of the furniture \n")
+            checkIdValue = False
             for key in read.inventory:
-                checkIdValue = False
                 if checkId in key:
                     newQuantity = int(input("Enter the amount of new inventory \n"))
                     addedValue = int(read.inventory[checkId][2]) + newQuantity
@@ -27,8 +28,7 @@ def addFurniture():
                     
                     furnitureList.append([productName,space * "",newQuantity,"\n"])
                     Total += newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$",""))
-                    checkIdValue = True
-                    
+                    checkIdValue = True     
             if checkIdValue == False:
                 print("Item not found / doesn't Exist")
             write.receipt = [
