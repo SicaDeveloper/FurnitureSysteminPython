@@ -37,9 +37,9 @@ def addFurniture():
     write.receipt = [
         "="*50, "\nReceipt\n",
             time.year,time.month,time.day,"\n",
-            employeeName,"\n"
-            FurnitureList,"\n"
-            addedValue,"\n"
+            employeeName,"\n",
+            FurnitureList,"\n",
+            addedValue,"\n",
             "\n",
             "="*50
     ]
