@@ -14,14 +14,12 @@ def addFurniture():
             checkId = input("Input the ID of the furniture \n")
             for key in read.inventory:
                 if checkId in key:
-                    newCheckId = int(checkId) - 1
                     newQuantity = int(input("Enter the amount of new inventory \n"))
                     addedValue = int(read.inventory[checkId][2]) + newQuantity
                     read.inventory[checkId][2] = addedValue  
                     
-                    write.newCheckId = newCheckId
-                    write.newQuantity = newQuantity
-                       
+                    productName = read.inventory[checkId][1]
+                    
         elif furnitureValue.lower() == "no":
             furnitureManufacturer = input("Enter Manufacturer Name: ")
             furnitureType = input("Enter Furniture Type: ")
@@ -35,11 +33,13 @@ def addFurniture():
         checkStatus = input("Do you want to continue? (yes/no) \n")
         if checkStatus == "no":
             status = False
-    
-    receipt = [
+            
+    write.receipt = [
         "="*50, "\nReceipt\n",
             time.year,time.month,time.day,"\n",
+            employeeName,"\n"
+            FurnitureList,"\n"
+            addedValue,"\n"
             "\n",
             "="*50
-        
     ]
