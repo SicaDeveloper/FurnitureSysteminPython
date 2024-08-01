@@ -38,7 +38,7 @@ def addFurniture():
     
     receipt = [
         "="*50, "\nReceipt\n",
-            time,"\n",
+            time.year,time.month,time.day,"\n",
             "\n",
             "="*50
         
