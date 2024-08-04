@@ -2,7 +2,7 @@ import datetime
 
 time = datetime.datetime.now()
 receipt = None
-timeString = str(time).split()[0] + " Receipt"
+timeString = str(time).split()[0] + " " + str(time).split()[1].replace(":","-") + " Receipt"
 def writeReceipt():
     fileName = timeString + ".txt"
     receiptFile = open(fileName, "w")

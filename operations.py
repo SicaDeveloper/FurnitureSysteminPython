@@ -24,21 +24,25 @@ def addFurniture():
                     read.inventory[checkId][2] = addedValue  
                     
                     productName = read.inventory[checkId][1]
-                    space = 50 - len(productName) - len(str(newQuantity))
+                    space = 49 - len(productName) - len(str(newQuantity))
                     
-                    furnitureList.append([productName,space * "",newQuantity,"\n"])
+                    furnitureList.append([productName + space * " " + str(newQuantity),"\n"])
+                    for furnitureItem in furnitureList:
+                        furnitureListString = "".join(furnitureItem)
                     Total += newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$",""))
                     checkIdValue = True     
             if checkIdValue == False:
                 print("Item not found / doesn't Exist")
             write.receipt = [
-                "="*50, "\nReceipt\n",
-                    str(time.year) + str(time.month) + str(time.day),"\n",
-                    employeeName,"\n",
-                    furnitureList,"\n",
-                    Total,"\n",
-                    "\n",
-                    "="*50
+                "="*50, "\n",
+                21 * " ", "Receipt", 20 * " ", "\n",
+                " " * 20,str(time).split()[0]," " * 20,"\n",
+                "Employee Name: ", employeeName, "\n",
+                "Name of the furniture"," " * 20, "Quantity","\n",
+                furnitureListString,"\n",
+                "Total" + 21 * " " + "$" + str(Total),"\n",
+                "\n",
+                "="*50
                 ]
                     
         elif furnitureValue.lower() == "no":
@@ -84,4 +88,3 @@ def sellFurniture():
                             "\n",
                             "="*50
                      ]
-                    
