@@ -79,7 +79,10 @@ def sellFurniture():
     shippingPrice = 0
     status = True
     furnitureListString = ""
-    customerName = input("Enter your name (Customer Name) \n")
+    try:
+        customerName = input("Enter your name (Customer Name) \n")
+    except ValueError:
+        print("Invalid Input")
     while status == True:
         try:
             checkId = input("Input the ID of the furniture \n")
@@ -87,8 +90,11 @@ def sellFurniture():
             print("Invalid Input")
             for key in read.inventory:
                 if checkId in key:
-                    newQuantity = int(input("Enter the amount of sold \n"))
-                    shippingCheck = input("Do you need shipping? (yes/no) \n")
+                    try:
+                        newQuantity = int(input("Enter the amount of sold \n"))
+                        shippingCheck = input("Do you need shipping? (yes/no) \n")
+                    except ValueError:
+                        print("Invalid Input")
                     if shippingCheck == "yes":
                         shippingLocation = input("Enter shipping location \n 1 : Kathmandu \n 2 : Lalitpur \n 3 : Bhaktapur \n")
                         if shippingLocation.lower() == "kathmandu":
