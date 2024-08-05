@@ -18,7 +18,10 @@ def addFurniture():
     while status == True:
         furnitureValue = input("Is this piece of furniture already in the inventory? (yes/no) \n")
         if furnitureValue.lower() == "yes":
-            checkId = input("Input the ID of the furniture \n")
+            try:
+                checkId = input("Input the ID of the furniture \n")
+            except ValueError:
+                print("Invalid Input, Not a number")
             checkIdValue = False
             for key in read.inventory:
                 if checkId in key:
