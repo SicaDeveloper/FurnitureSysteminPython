@@ -10,11 +10,15 @@ while status == True:
         read.readInventory()
     elif question == '2':
         operations.addFurniture()
+        operations.updateInventory()
         write.writeReceipt()
     elif question == '3':
-        write.sellFurniture()
+        operations.sellFurniture()
+        operations.updateInventory()
+        write.writeReceipt()
     elif question == '4':       
         status = False
     else:
         print('Invalid Input')
+    write.question = question
     
