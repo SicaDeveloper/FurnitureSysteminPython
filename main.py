@@ -20,7 +20,7 @@ while status == True:
         operations.updateInventory()
         write.writeReceipt()
     elif question == '4':       
-        status = False
+        break
     else:
         print('Invalid Input')
     write.question = question

@@ -2,7 +2,7 @@ import datetime
 question = None
 
 time = datetime.datetime.now()
-receipt = None
+receipt = []
 timeString = str(time).split()[0] + " " + str(time).split()[1].replace(":","-") + " Receipt"
 def writeReceipt():
     if question == '2': 
