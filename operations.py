@@ -57,9 +57,9 @@ def addFurniture():
                     furnitureType = input("Enter Furniture Type: ")
                     furnitureQuantity = int(input("Enter Quantity: "))
                     furniturePrice = input("Enter Price per Unit: ")
-                except ValueError:
-                    print("Invalid Input")
                     break
+                except:
+                    print("Invalid Input")
             lastId = int(read.recentId) + 1
             read.inventory.update({str(lastId): [furnitureManufacturer, furnitureType, furnitureQuantity, furniturePrice]})
         else:
@@ -68,7 +68,7 @@ def addFurniture():
             try:
                 checkStatus = input("Do you want to continue? (yes/no) \n")
                 break
-            except ValueError:
+            except:
                 print("Invalid Input, Enter yes or no")
             
         if checkStatus == "no":
@@ -101,7 +101,7 @@ def sellFurniture():
         try:
             customerName = input("Enter your name (Customer Name) \n")
             break
-        except ValueError:
+        except:
             print("Invalid Input")
     while status == True:
         while True:
@@ -111,7 +111,7 @@ def sellFurniture():
                     break
                 else:
                     print("Item not found / doesn't Exist \n")
-            except ValueError:
+            except:
                 print("Invalid Input")
         for key in read.inventory:
             if checkId in key:
@@ -153,7 +153,7 @@ def sellFurniture():
                                 else:
                                     print("Invalid Input")
 
-                    except ValueError:
+                    except:
                         print("Invalid Input")
                         
                 subtractedValue = int(read.inventory[checkId][2]) - newQuantity
