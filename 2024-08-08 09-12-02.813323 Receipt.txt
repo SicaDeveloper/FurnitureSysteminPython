@@ -1,0 +1,10 @@
+==================================================
+                     Receipt                    
+                    2024-08-08                    
+Employee Name: Raj
+Name of the furniture                    Quantity
+       Bunk Bed                                20
+       Twin Bed                                20
+Total                                       $2600.0
+
+==================================================

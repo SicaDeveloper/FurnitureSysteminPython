@@ -91,6 +91,7 @@ def addFurniture():
                 print(item)    
                 
     furnitureListString = ""
+    write.receipt = []
 
 def sellFurniture():
     Total = 0
@@ -191,7 +192,9 @@ def sellFurniture():
     ]
     for item in write.receipt:
             print(item)
+            
     furnitureListString = ""
+    write.receipt = []
                     
 def updateInventory():
     updateInventoryFile = open("text.txt", 'w')
