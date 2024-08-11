@@ -13,6 +13,7 @@ def addFurniture():
     status = True
     furnitureListString = ""
     furnitureList = []
+    
     while True:
         employeeName = input("Enter your name (Employee Name) \n")
         if type(employeeName) == str:
