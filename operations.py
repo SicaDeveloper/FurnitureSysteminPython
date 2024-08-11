@@ -5,7 +5,6 @@ import write
 vat = 0.13  
 time = datetime.datetime.now()
 
-furnitureList = []
 
 recentId = 0
 
@@ -13,8 +12,13 @@ def addFurniture():
     Total = 0
     status = True
     furnitureListString = ""
-    employeeName = input("Enter your name (Employee Name)")
-    
+    furnitureList = []
+    while True:
+        employeeName = input("Enter your name (Employee Name) \n")
+        if type(employeeName) == str:
+            break
+        else:
+            print("Please Enter a valid name")
     while status == True:
         try:
             while True:
@@ -23,8 +27,8 @@ def addFurniture():
                     break
                 else:
                     print("Invalid Input,Try again")
-        except Exception as e:
-            print(e)
+        except:
+            print("Invalid Input,Try again")
         if furnitureValue.lower() == "yes":
                 while True:
                     checkId = input("Input the ID of the furniture \n")
@@ -39,28 +43,33 @@ def addFurniture():
                         if newQuantity > 0:
                             addedValue = int(read.inventory[checkId][2]) + newQuantity
                             read.inventory[checkId][2] = addedValue  
-                        
                             productName = read.inventory[checkId][1]
-                            spaceForItems = 49 - len(productName) - len(str(newQuantity))
-                            spaceForTotal = 50 - len("Total") - len(str(Total))
+                            
                         else:
                             print("Negative Number not allowed")
                             
                         Total += vat * (newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$","")))        
                         
+                        spaceForItems = 50 - len(productName) - len(str(newQuantity))
+                        spaceForTotal = 50 - len("Total") - len(str(Total))
+                        
                         furnitureList.append([productName + spaceForItems * " " + str(newQuantity)])
                         
         elif furnitureValue.lower() == "no":
-            while True:
-                try:
+            try:
+                while True:
                     furnitureManufacturer = input("Enter Manufacturer Name: ")
                     furnitureType = input("Enter Furniture Type: ")
                     furnitureQuantity = int(input("Enter Quantity: "))
                     furniturePrice = input("Enter Price per Unit: ")
-                    break
-                except:
-                    print("Invalid Input")
-            lastId = int(read.recentId) + 1
+                    
+                    if type(furnitureManufacturer) == str and type(furnitureType) == str and type(furnitureQuantity) == int and type(furniturePrice) == str:
+                        break
+                    else:
+                        print("Invalid input found, Try again")
+            except:
+                print("Invalid Input")
+            lastId = int(recentId) + 1
             read.inventory.update({str(lastId): [furnitureManufacturer, furnitureType, furnitureQuantity, furniturePrice]})
         else:
             print("Error try again")
@@ -92,12 +101,14 @@ def addFurniture():
                 
     furnitureListString = ""
     write.receipt = []
+    furnitureList = []
 
 def sellFurniture():
     Total = 0
     shippingPrice = 0
     status = True
     furnitureListString = ""
+    furnitureList = []
     while True:
         try:
             customerName = input("Enter your name (Customer Name) \n")
@@ -138,18 +149,15 @@ def sellFurniture():
                                 shippingCheck = input("Do you need shipping? (yes/no) \n")
                                 
                                 if shippingCheck == "yes":
-                                    shippingLocation = input("Enter shipping location \n 1 : Kathmandu \n 2 : Lalitpur \n 3 : Bhaktapur \n Enter the Corresponding Number")
+                                    shippingLocation = input("Enter shipping location \n 1.Inside Valley \n 2.Outside Valley \n Enter the Corresponding Number")
                                 else:
                                     break
                                 
                                 if shippingLocation == "1":
-                                    shippingPrice = 150
+                                    shippingPrice = 0
                                     break
                                 elif shippingLocation == "2":
-                                    shippingPrice = 200
-                                    break
-                                elif shippingLocation == "3":
-                                    shippingPrice = 250
+                                    shippingPrice = 1500
                                     break
                                 else:
                                     print("Invalid Input")
@@ -169,6 +177,7 @@ def sellFurniture():
                 productName = read.inventory[checkId][1]
                 
                 spaceForItems = 49 - len(productName) - len(str(newQuantity))
+                spaceForShipping = 49 - len("Shipping Price") - len(str(shippingPrice))
                 spaceForTotal = 49 - len("Total") - len(str(Total))
                 
                 productName = read.inventory[checkId][1]
@@ -186,6 +195,8 @@ def sellFurniture():
     "Customer Name: " + customerName, "\n",
     "Name of the furniture" + " " * 20 + "Quantity","\n",
     furnitureListString,"\n",
+    "Shipping Price" + spaceForShipping * " " + "$" + str(shippingPrice),"\n",
+    "VAT" + 44 * " " +"13%"
     "Total" + spaceForTotal * " " + "$" + str(Total),"\n",
     "\n",
     "=" * 50 
@@ -194,9 +205,5 @@ def sellFurniture():
             print(item)
             
     furnitureListString = ""
+    furnitureList = []
     write.receipt = []
-                    
-def updateInventory():
-    updateInventoryFile = open("text.txt", 'w')
-    for line in read.inventory:
-            updateInventoryFile.write(str(line[0]) + ", " + str(read.inventory[line][0]) + ", " + str(read.inventory[line][1]) + ", " + str(read.inventory[line][2]) + ", " + str(read.inventory[line][3]))
