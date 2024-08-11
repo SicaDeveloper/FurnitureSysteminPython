@@ -19,7 +19,7 @@ def addFurniture():
         if type(employeeName) == str:
             break
         else:
-            print("Please Enter a valid name")
+            print("Please Enter a valid name \n")
     while status == True:
         try:
             while True:
@@ -27,7 +27,7 @@ def addFurniture():
                 if furnitureValue.lower() == "yes" or furnitureValue.lower() == "no":
                     break
                 else:
-                    print("Invalid Input,Try again")
+                    print("Invalid Input,Try again \n")
         except:
             print("Invalid Input,Try again")
         if furnitureValue.lower() == "yes":
@@ -47,7 +47,7 @@ def addFurniture():
                             productName = read.inventory[checkId][1]
                             
                         else:
-                            print("Negative Number not allowed")
+                            print("Negative Number not allowed \n")
                             
                         Total += vat * (newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$","")))        
                         
@@ -59,27 +59,27 @@ def addFurniture():
         elif furnitureValue.lower() == "no":
             try:
                 while True:
-                    furnitureManufacturer = input("Enter Manufacturer Name: ")
-                    furnitureType = input("Enter Furniture Type: ")
-                    furnitureQuantity = int(input("Enter Quantity: "))
-                    furniturePrice = input("Enter Price per Unit: ")
+                    furnitureManufacturer = input("Enter Manufacturer Name: \n ")
+                    furnitureType = input("Enter Furniture Type: \n ")
+                    furnitureQuantity = int(input("Enter Quantity: \n "))
+                    furniturePrice = input("Enter Price per Unit: \n ")
                     
                     if type(furnitureManufacturer) == str and type(furnitureType) == str and type(furnitureQuantity) == int and type(furniturePrice) == str:
                         break
                     else:
-                        print("Invalid input found, Try again")
+                        print("Invalid input found, Try again \n ")
             except:
-                print("Invalid Input")
+                print("Invalid Input \n")
             lastId = int(recentId) + 1
             read.inventory.update({str(lastId): [furnitureManufacturer, furnitureType, furnitureQuantity, furniturePrice]})
         else:
-            print("Error try again")
+            print("Error try again \n")
         while True:
             try:
                 checkStatus = input("Do you want to continue? (yes/no) \n")
                 break
             except:
-                print("Invalid Input, Enter yes or no")
+                print("Invalid Input, Enter yes or no \n")
             
         if checkStatus == "no":
             status = False
@@ -115,7 +115,7 @@ def sellFurniture():
             customerName = input("Enter your name (Customer Name) \n")
             break
         except:
-            print("Invalid Input")
+            print("Invalid Input \n")
     while status == True:
         while True:
             try:
@@ -125,7 +125,7 @@ def sellFurniture():
                 else:
                     print("Item not found / doesn't Exist \n")
             except:
-                print("Invalid Input")
+                print("Invalid Input \n")
         for key in read.inventory:
             if checkId in key:
                 while True:
@@ -161,15 +161,15 @@ def sellFurniture():
                                     shippingPrice = 1500
                                     break
                                 else:
-                                    print("Invalid Input")
+                                    print("Invalid Input \n")
 
                     except:
-                        print("Invalid Input")
+                        print("Invalid Input \n")
                         
                 subtractedValue = int(read.inventory[checkId][2]) - newQuantity
                 
                 if subtractedValue < 0:
-                    print("Not enough inventory")
+                    print("Not enough inventory \n")
                     break
                 read.inventory[checkId][2] = subtractedValue  
                 
