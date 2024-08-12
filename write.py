@@ -30,4 +30,4 @@ No parameters are taken, and no value is returned.
 def updateInventory():
     updateInventoryFile = open("text.txt", 'w')
     for line in read.inventory:
-            updateInventoryFile.write(str(line[0]) + "," + str(read.inventory[line][0]) + "," + str(read.inventory[line][1]) + "," + str(read.inventory[line][2]) + "," + str(read.inventory[line][3] + "\n"))
+            updateInventoryFile.write(str(line[0]) + "," + str(read.inventory[line][0]) + "," + str(read.inventory[line][1]) + "," + str(read.inventory[line][2]) + "," + str(read.inventory[line][3]))
