@@ -143,6 +143,8 @@ def sellFurniture():
                         while True:
                             try:
                                 newQuantity = int(input("Enter the amount to be sold \n"))
+                            except:
+                                print("Invalid Input, Enter a number \n")
                                 
                                 if newQuantity > int(read.inventory[checkId][2]):
                                     print("Not enough inventory")
@@ -152,15 +154,13 @@ def sellFurniture():
                                     print("Zero not allowed")
                                 else:
                                     break
-                            except Exception as e:
-                                print(e)
                         
                         if newQuantity > 0:
                             
                                 shippingCheck = input("Do you need shipping? (yes/no) \n")
                                 
                                 if shippingCheck == "yes":
-                                    shippingLocation = input("Enter shipping location \n 1.Inside Valley \n 2.Outside Valley \n Enter the Corresponding Number")
+                                    shippingLocation = input("Enter shipping location \n 1.Inside Valley \n 2.Outside Valley \n Enter the Corresponding Number \n")
                                 else:
                                     break
                                 
@@ -207,7 +207,7 @@ def sellFurniture():
     "Name of the furniture" + " " * 20 + "Quantity","\n",
     furnitureListString,"\n",
     "Shipping Price" + spaceForShipping * " " + "$" + str(shippingPrice),"\n",
-    "VAT" + 44 * " " +"13%"
+    "VAT" + 44 * " " +"13% \n"
     "Total" + spaceForTotal * " " + "$" + str(Total),"\n",
     "\n",
     "=" * 50 

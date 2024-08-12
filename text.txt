@@ -1,4 +1,4 @@
-1, HNI Corporation, Bunk Bed,240, $400
+1, HNI Corporation, Bunk Bed,220, $400
 2, HNI CorporationHaworth Inc., Twin Bed,300, $600
 3, Achham furniture, Sleeper Sofa, 50, $200
 4, Kimball International Inc., Corner sofa, 75, $350
