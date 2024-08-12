@@ -12,7 +12,7 @@ It allows the customers and employees to buy and sell available inventory.
 The components of this program are,
 1. The employee or customer can view the inventory
 2. The employee or customer can sell an item or multiple items
-3. The employee or customer can buy an item or multiple items available in the inventory or a new item
+3. The employee or customer can buy an item or multiple items available in the inventory or a new item23
 4. The employee or customer can exit the program
 
 """

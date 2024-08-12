@@ -143,7 +143,10 @@ def sellFurniture():
     while True:
         try:
             customerName = input("Enter your name (Customer Name) \n")
-            break
+            if type(customerName) == str:
+                break
+            else:
+                print("Please Enter a valid name \n")
         except:
             print("Invalid Input \n")
     while status == True:
@@ -155,61 +158,58 @@ def sellFurniture():
                 else:
                     print("Item not found / doesn't Exist \n")
             except:
-                print("Invalid Input \n")
-        for key in read.inventory:
-            if checkId in key:
-                        while True:
-                            try:
-                                newQuantity = int(input("Enter the amount to be sold \n"))
-                            except:
-                                print("Invalid Input, Enter a number \n")
-                                
-                                if newQuantity > int(read.inventory[checkId][2]):
-                                    print("Not enough inventory")
-                                elif newQuantity < 0:
-                                    print("Negative Number not allowed")
-                                elif newQuantity == 0:
-                                    print("Zero not allowed")
-                                else:
-                                    break
-                        
-            subtractedValue = int(read.inventory[checkId][2]) - newQuantity
-                
-            if subtractedValue < 0:
-                print("Not enough inventory \n")
+                print("Invalid Input , Enter a numerical value \n")
+
+        while True:
+            try:
+                newQuantity = int(input("Enter the amount to be sold \n"))
                 break
-            read.inventory[checkId][2] = subtractedValue  
-            
-            Total += vat * (newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$",""))) + shippingPrice
-            
-            productName = read.inventory[checkId][1]
-            
-            spaceForItems = 49 - len(productName) - len(str(newQuantity))
-            spaceForShipping = 49 - len("Shipping Price") - len(str(shippingPrice))
-            spaceForTotal = 49 - len("Total") - len(str(Total))
-            
-            productName = read.inventory[checkId][1]
+            except:
+                print("Invalid Input, Enter a number \n")
                 
-            checkStatus = input("Do you want to continue? (yes/no) \n")
-            if checkStatus == "no":
-                status = False
-            while True:    
-                shippingCheck = input("Do you need shipping? (yes/no) \n")                 
-                if shippingCheck == "yes":
-                    shippingLocation = input("Enter shipping location \n 1.Inside Valley \n 2.Outside Valley \n Enter the Corresponding Number \n")
-                else:
-                    break
-                
-                if shippingLocation == "1":
-                    shippingPrice = 0
-                    break
-                elif shippingLocation == "2":
-                    shippingPrice = 1500
-                    break
-                else:
-                    print("Invalid Input \n")
-             
-    furnitureList.append([productName + spaceForItems * " " + str(newQuantity)])
+            if newQuantity > int(read.inventory[checkId][2]):
+                print("Not enough inventory \n")
+            elif newQuantity < 0:
+                print("Negative Number not allowed \n")
+            elif newQuantity == 0:
+                print("Zero not allowed \n")
+            elif subtractedValue < 0:
+                print("Not enough inventory \n")
+            
+        subtractedValue = int(read.inventory[checkId][2]) - newQuantity
+        read.inventory[checkId][2] = subtractedValue  
+        
+        Total += vat * (newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$",""))) + shippingPrice
+        
+        productName = read.inventory[checkId][1]
+        
+        spaceForItems = 49 - len(productName) - len(str(newQuantity))
+        spaceForTotal = 49 - len("Total") - len(str(Total))
+        furnitureList.append([productName + spaceForItems * " " + str(newQuantity)])
+        productName = read.inventory[checkId][1]
+            
+        checkStatus = input("Do you want to continue? (yes/no) \n")
+        if checkStatus == "no":
+            status = False
+    while True:    
+        shippingCheck = input("Do you need shipping? (yes/no) \n")  
+                       
+        if shippingCheck == "yes":
+            shippingLocation = input("Enter shipping location \n 1.Inside Valley \n 2.Outside Valley \n Enter the Corresponding Number \n")
+        else:
+            break
+        
+        if shippingLocation == "1":
+            shippingPrice = 0
+            break
+        elif shippingLocation == "2":
+            shippingPrice = 1500
+            break
+        else:
+            print("Invalid Input , Enter a number (Shipping) \n")
+    
+    spaceForShipping = 49 - len("Shipping Price") - len(str(shippingPrice))
+            
     furnitureListString += "".join(str(furnitureList).replace("[","").replace("]","").replace("'","")).replace(", ","\n")
     write.receipt = [
     "="*50, "\n",
