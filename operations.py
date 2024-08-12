@@ -39,7 +39,12 @@ def addFurniture():
                         print("Item not found / doesn't Exist")
                 for key in read.inventory:
                     if checkId in key:
-                        newQuantity = int(input("Enter the amount of new inventory \n"))
+                        while True:
+                            try:
+                                newQuantity = int(input("Enter the amount of new inventory \n"))
+                                break
+                            except:
+                                print("Invalid Input \n")
                         
                         if newQuantity > 0:
                             addedValue = int(read.inventory[checkId][2]) + newQuantity
@@ -59,10 +64,13 @@ def addFurniture():
         elif furnitureValue.lower() == "no":
             try:
                 while True:
-                    furnitureManufacturer = input("Enter Manufacturer Name: \n ")
-                    furnitureType = input("Enter Furniture Type: \n ")
-                    furnitureQuantity = int(input("Enter Quantity: \n "))
-                    furniturePrice = input("Enter Price per Unit: \n ")
+                    try:
+                        furnitureManufacturer = input("Enter Manufacturer Name: \n ")
+                        furnitureType = input("Enter Furniture Type: \n ")
+                        furnitureQuantity = int(input("Enter Quantity: \n "))
+                        furniturePrice = input("Enter Price per Unit: \n ")
+                    except:
+                        print("Invalid Input \n")
                     
                     if type(furnitureManufacturer) == str and type(furnitureType) == str and type(furnitureQuantity) == int and type(furniturePrice) == str:
                         break
@@ -70,10 +78,12 @@ def addFurniture():
                         print("Invalid input found, Try again \n ")
             except:
                 print("Invalid Input \n")
+                
             lastId = int(recentId) + 1
             read.inventory.update({str(lastId): [furnitureManufacturer, furnitureType, furnitureQuantity, furniturePrice]})
         else:
             print("Error try again \n")
+            
         while True:
             try:
                 checkStatus = input("Do you want to continue? (yes/no) \n")
@@ -99,7 +109,7 @@ def addFurniture():
                 ]
     for item in write.receipt:
                 print(item)    
-                
+    write.writeReceipt()
     furnitureListString = ""
     write.receipt = []
     furnitureList = []
@@ -204,7 +214,7 @@ def sellFurniture():
     ]
     for item in write.receipt:
             print(item)
-            
+    write.writeReceipt()
     furnitureListString = ""
     furnitureList = []
     write.receipt = []

@@ -18,11 +18,9 @@ while status == True:
     elif question == '2':
         operations.addFurniture()
         write.updateInventory()
-        write.writeReceipt()
     elif question == '3':
         operations.sellFurniture()
         write.updateInventory()
-        write.writeReceipt()
     elif question == '4':       
         break
     else:
