@@ -11,11 +11,16 @@ except:
     print("File not found,please create the required file [text.txt]")
     
 """
-Reads the contents of the inventory file 'text.txt' and prints each line.
 
-No parameters are taken, and no value is returned.
+Reads the inventory file 'text.txt' and prints each line.
+
 """
 def readInventory():
+    """
+    
+    Reads the inventory file 'text.txt' and prints each line.
+
+    """
     try:
         inventoryFile = open("text.txt",'r')
     except:
