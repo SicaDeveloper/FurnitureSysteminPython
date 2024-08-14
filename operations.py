@@ -29,12 +29,12 @@ def addFurniture():
                     break
                 else:
                     print("Invalid Input,Try again \n")
+                    
     if furnitureCheckValue.lower() == "yes":
         addOldFurniture(employeeName)
     elif furnitureCheckValue.lower() == "no":
         addNewFurniture()
-    else:
-        print("Invalid Input,Try again \n")
+        
 def addOldFurniture(employeeName):
     Total = 0
     status = True
@@ -52,19 +52,18 @@ def addOldFurniture(employeeName):
                 while True:
                     try:
                         newQuantity = int(input("Enter the amount of new inventory \n"))
-                        break
+                        if newQuantity > 0:
+                            break
+                        else:
+                            print("Quantity cannot be negative \n")
                     except:
                         print("Invalid Input \n")
                         
-                if newQuantity > 0:
-                    addedValue = int(read.inventory[checkId][2]) + newQuantity
-                    read.inventory[checkId][2] = addedValue  
-                    productName = read.inventory[checkId][1]
+                addedValue = int(read.inventory[checkId][2]) + newQuantity
+                read.inventory[checkId][2] = addedValue  
+                productName = read.inventory[checkId][1]
                     
-                else:
-                    print("Negative Number not allowed \n")
-                    
-                Total += vat * (newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$","")))        
+                Total += newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$","")) + vat * (newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$","")))        
                 
                 spaceForItems = 50 - len(productName) - len(str(newQuantity))
                 spaceForTotal = 50 - len("Total") - len(str(Total))
@@ -72,7 +71,7 @@ def addOldFurniture(employeeName):
         furnitureList.append([productName + spaceForItems * " " + str(newQuantity)])    
         while True:
                 try:
-                    checkStatus = input("Do you want to continue? (yes/no) \n")
+                    checkStatus = input("Do you want to continue adding items? (yes/no) \n")
                     break
                 except:
                     print("Invalid Input, Enter yes or no \n")
@@ -163,23 +162,25 @@ def sellFurniture():
         while True:
             try:
                 newQuantity = int(input("Enter the amount to be sold \n"))
-                break
+                
+                subtractedValue = int(read.inventory[checkId][2]) - newQuantity
+                
+                if newQuantity > int(read.inventory[checkId][2]):
+                    print("Not enough inventory \n")
+                elif newQuantity < 0:
+                    print("Negative Number not allowed \n")
+                elif newQuantity == 0:
+                    print("Zero not allowed \n")
+                elif subtractedValue < 0:
+                    print("Not enough inventory \n")
+                else:
+                    break
             except:
                 print("Invalid Input, Enter a number \n")
-                
-            if newQuantity > int(read.inventory[checkId][2]):
-                print("Not enough inventory \n")
-            elif newQuantity < 0:
-                print("Negative Number not allowed \n")
-            elif newQuantity == 0:
-                print("Zero not allowed \n")
-            elif subtractedValue < 0:
-                print("Not enough inventory \n")
             
-        subtractedValue = int(read.inventory[checkId][2]) - newQuantity
         read.inventory[checkId][2] = subtractedValue  
         
-        Total += vat * (newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$",""))) + shippingPrice
+        Total += newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$","")) + vat * (newQuantity * int(read.inventory[checkId][3].replace("\n","").replace("$",""))) + shippingPrice
         
         productName = read.inventory[checkId][1]
         
@@ -188,7 +189,7 @@ def sellFurniture():
         furnitureList.append([productName + spaceForItems * " " + str(newQuantity)])
         productName = read.inventory[checkId][1]
             
-        checkStatus = input("Do you want to continue? (yes/no) \n")
+        checkStatus = input("Do you want to continue adding items? (yes/no) \n")
         if checkStatus == "no":
             status = False
     while True:    
